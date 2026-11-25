@@ -1,0 +1,16 @@
+services:
+  perito:
+    image: ghcr.io/tinxo/peritaje-lsi:2026
+    container_name: perito
+    hostname: lab
+    # El sistema de archivos del contenedor es de solo lectura:
+    # la evidencia en /evidencia NO se puede modificar (analogía del bloqueador de escritura).
+    read_only: true
+    tmpfs:
+      - /tmp
+    # Lo único escribible es la carpeta de trabajo, que queda en su computadora.
+    volumes:
+      - ./casos:/casos
+    network_mode: none
+    stdin_open: true
+    tty: true
