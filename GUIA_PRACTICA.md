@@ -23,14 +23,14 @@ Además, RRHH les entregó por su cuenta una "copia" del pendrive. Tienen que de
 
 **Antes del día de la clase** (requiere conexión, se hace una sola vez):
 ```bash
-git clone https://github.com/tinxo/peritaje-lsi.git
-cd peritaje-lsi
+git clone https://github.com/tinxo/auditoria-peritaje.git
+cd auditoria-peritaje
 docker compose pull
 ```
 
 **En la clase:**
 ```bash
-cd peritaje-lsi
+cd auditoria-peritaje
 docker compose run --rm perito
 ```
 

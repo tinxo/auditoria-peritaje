@@ -12,8 +12,8 @@ Entorno de trabajo para la práctica de informática forense. Contiene la eviden
    - Linux: Docker Engine y el plugin `docker compose`.
 2. Clonar este repositorio y descargar la imagen (unos 200/300 MB):
    ```bash
-   git clone https://github.com/tinxo/peritaje-lsi.git
-   cd peritaje-lsi
+   git clone https://github.com/tinxo/auditoria-peritaje.git
+   cd auditoria-peritaje
    docker compose pull
    ```
 3. Probar que funciona:
