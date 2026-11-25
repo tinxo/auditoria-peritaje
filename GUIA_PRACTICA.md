@@ -156,7 +156,9 @@ sqlite3 -header -column $H "
 ```bash
 fls -r -m / -o 2048 usb.dd > body.txt
 mactime -b body.txt -d 2026-10-15..2026-10-31 2>/dev/null > timeline.csv
-column -s, -t timeline.csv | less -S
+cut -d, -f1,3,8 timeline.csv          # fecha, tipo (macb) y archivo
+less -S timeline.csv                  # el CSV completo, sin cortar líneas
+sed 's/,/ | /g' timeline.csv | less -S
 ```
 `m`, `a`, `c` y `b` indican modificación, acceso, cambio de metadatos y creación. Armen una **cronología unificada** que combine el sistema de archivos, el historial y el EXIF.
 
