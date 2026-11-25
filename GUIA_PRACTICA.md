@@ -1,7 +1,7 @@
 # Práctica de Peritaje Informático
-Auditoría Informática – LSI – FCEQyN – UNaM · Sesión práctica de informática forense | peritaje
+Auditoría Informática – LSI – FCEQyN – UNaM | Informática forense - Peritaje
 
-Trabajo individual - Datos 100 % ficticios
+Trabajo individual · Datos 100 % ficticios
 
 ---
 
@@ -19,7 +19,7 @@ Además, RRHH les entregó por su cuenta una "copia" del pendrive. Tienen que de
 
 ---
 
-## Antes de empezar (5 min)
+## Antes de empezar
 
 **Antes del día de la clase** (requiere conexión, se hace una sola vez):
 ```bash
@@ -44,7 +44,7 @@ Para salir: `exit`. Para volver a entrar, el mismo comando; su trabajo en `/caso
 
 ---
 
-## Etapa 1 – Preservación y adquisición
+## Etapa 1 – Preservación y adquisición 
 
 **1.1 Leer el acta.**
 ```bash
@@ -68,7 +68,12 @@ sha256sum /evidencia/COPIA_B_entregada_por_RRHH.dd
 cmp -l /evidencia/USB_JPerez_Kingston_16GB.dd /evidencia/COPIA_B_entregada_por_RRHH.dd
 ```
 - ¿Cuántos bytes difieren y en qué posición?
-- Pista: `cmp` informa la posición contando desde 1 y los valores en octal. Con `xxd -s <posición-1> -l 32 <archivo>` pueden ver el contexto. ¿Qué cambió?
+- Pista: `cmp -l` muestra tres columnas: **posición** (contando desde 1), **valor en el primer archivo** y **valor en el segundo**, los dos en octal (`printf '\71\n'` muestra a qué carácter corresponde el 71). Para ver el texto alrededor del cambio, usen la **posición** (no los valores) en `xxd`, restándole unos bytes para tener contexto:
+  ```bash
+  xxd -s <posición - 8> -l 32 /evidencia/COPIA_B_entregada_por_RRHH.dd
+  xxd -s <posición - 8> -l 32 /evidencia/USB_JPerez_Kingston_16GB.dd
+  ```
+  `xxd` acepta el número directamente en decimal. ¿Qué cambió?
 - **¿Se puede usar esa copia como prueba? Fundamenten.**
 
 **1.5 Adquirir su copia de trabajo** con cálculo y verificación de hash:
@@ -147,7 +152,7 @@ sqlite3 -header -column $H "
 - ¿De dónde salió originalmente el archivo de precios?
 - ¿Qué búsquedas se hicieron el 23/10?
 
-### 2.7 Línea de tiempo
+### 2.7 Línea de tiempo 
 ```bash
 fls -r -m / -o 2048 usb.dd > body.txt
 mactime -b body.txt -d 2026-10-15..2026-10-31 2>/dev/null > timeline.csv
@@ -175,7 +180,7 @@ Completen `casos/informe_pericial.md` (la copia que hicieron en 1.6). Debe conte
 
 ---
 
-## Para cerrar
+## Para pensar, a modo de cierre
 
 - Usamos una imagen **ya adquirida**. En un procedimiento real, ¿qué cambia si el equipo está encendido? ¿Qué se pierde si se lo apaga? (RAM, conexiones abiertas, cifrado).
 - ¿Qué parte de lo que hicieron hoy sería **reproducible** por un perito de la otra parte? ¿Qué necesitaría?
